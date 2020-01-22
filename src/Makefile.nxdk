@@ -1,0 +1,39 @@
+# rRootage makefile
+# gcc version 7.2.0 (Rev1, Built by MSYS2 project)
+#  Target: i686-w64-mingw32
+
+NAME   = rr
+O      = o
+RM     = rm -f
+PROG = main.exe
+XBE_TITLE = rRootage
+GEN_XISO = $(XBE_TITLE).iso
+NXDK_DIR = $(CURDIR)/../../nxdk
+NXDK_SDL = y
+SRCS = $(wildcard $(CURDIR)/*.c)
+SRCS += $(wildcard $(CURDIR)/*.cc)
+
+include $(NXDK_DIR)/Makefile
+
+CXXFLAGS += -I./bulletml/ -I$(CURDIR)
+
+#OBJS +=	$(NAME).$(O) \
+#	foe.$(O) foecommand.$(O) barragemanager.$(O) boss.$(O) ship.$(O) laser.$(O) \
+#	frag.$(O) background.$(O) letterrender.$(O) shot.$(O) \
+#	screen.$(O) vector.$(O) degutil.$(O) rand.$(O) mt19937int.$(O) \
+#	soundmanager.$(O) attractmanager.$(O) \
+#	$(NAME)_res.$(O)
+
+%.obj: %.cc
+	@echo "[ CC      ] $@"
+	$(VE) $(CXX) $(NXDK_CXXFLAGS) $(CXXFLAGS) -MD -MP -MT '$@' -MF '$(patsubst %.cc,%.cc.d,$<)' -c -o '$@' '$<'
+
+#$(PROG): $(OBJS) $(NXDK_DIR)/lib/xboxkrnl/libxboxkrnl.lib
+#	@echo "[ CXX      ] $@"
+#	$(CXX) -o $(PROG) $(NXDK_CXXFLAGS) $(CXXFLAGS) $(OBJS) $(LD) $(NXDK_LDFLAGS) $(LDFLAGS) -out:'$@' $^
+
+$(NAME)_res.o: $(NAME).rc
+	windres -i $(NAME).rc -o $(NAME)_res.o
+
+#clean:
+#	$(RM) ../$(PROG) *.$(O)

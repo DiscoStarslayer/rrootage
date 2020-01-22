@@ -83,4 +83,3 @@ clean:
 	$(RM) -f $(BULLET_TARGET)
 	$(RM) -rf $(BULLET_OBJ_DIR)
 	$(RM) ../$(PROG) *.$(O)
-
