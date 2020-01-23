@@ -1,0 +1,3 @@
+[submodule "src/libbulletml"]
+	path = src/libbulletml
+	url = git@github.com:thejustinwalsh/libbulletml.git
