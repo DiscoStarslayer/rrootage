@@ -34,6 +34,9 @@
 
 static int screenWidth, screenHeight;
 
+SDL_Window *window;
+SDL_GLContext glContext;
+
 // Reset viewport when the screen is resized.
 static void screenResized() {
   int viewportWidth = screenWidth;

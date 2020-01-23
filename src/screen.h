@@ -37,9 +37,6 @@ extern int brightness;
 int getPadState();
 int getButtonState();
 
-SDL_Window *window;
-SDL_GLContext glContext;
-
 void loadModel(char *fileName, GLuint *model);
 void loadGLTexture(char*, GLuint*);
 void generateTexture(GLuint*);
