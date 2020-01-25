@@ -2,32 +2,32 @@
 # gcc version 7.2.0 (Rev1, Built by MSYS2 project)
 #  Target: i686-w64-mingw32
 
-NAME   = rr
-O      = o
-RM     = rm -f
-CC     = gcc
-CXX    = g++
-AR	   = ar
+NAME = rr
+O    = o
+RM   = rm -f
+CC   = gcc
+CXX  = g++
+AR	 = ar
 
-PROG   = $(NAME).exe
+PROG = $(NAME).exe
 CONFIG = release
 BULLET_DIR = libbulletml
-BULLET_OBJ_DIR = ${BULLET_DIR}/obj/${CONFIG}/libbulletml
-BULLET_TARGET_DIR = ${BULLET_DIR}/bin/${CONFIG}
-BULLET_TARGET = ${BULLET_TARGET_DIR}/libbulletml.a
-BULLET_INCLUDE = ${BULLET_DIR}/include
-BULLET_SRC = ${BULLET_DIR}/src
+BULLET_OBJ_DIR = $(BULLET_DIR)/obj/$(CONFIG)/libbulletml
+BULLET_TARGET_DIR = $(BULLET_DIR)/bin/$(CONFIG)
+BULLET_TARGET = $(BULLET_TARGET_DIR)/libbulletml.a
+BULLET_INCLUDE = $(BULLET_DIR)/include
+BULLET_SRC = $(BULLET_DIR)/src
 
 BULLET_DEFINES += -DNDEBUG
-BULLET_INCLUDES += -I${BULLET_INCLUDE} -I${BULLET_SRC}
+BULLET_INCLUDES += -I$(BULLET_INCLUDE) -I$(BULLET_SRC)
 
 DEFAULT_CFLAGS = `sdl2-config --cflags`
-LDFLAGS        = -static-libgcc -static-libstdc++ -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive -L/mingw64/lib -lglu32 -lopengl32 -lmingw32 -lSDL2main -L./libbulletml/bin/${CONFIG}/ -lbulletml -Wl,-Bdynamic -L.. -lSDL2 -lSDL2_mixer -mwindows
+LDFLAGS = -static-libgcc -static-libstdc++ -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive -L/mingw64/lib -lglu32 -lopengl32 -lmingw32 -lSDL2main -L./libbulletml/bin/$(CONFIG)/ -lbulletml -Wl,-Bdynamic -L.. -lSDL2 -lSDL2_mixer -mwindows
 
 MORE_CFLAGS = -O2 -Wall
 
-CFLAGS   = $(DEFAULT_CFLAGS) $(MORE_CFLAGS)
-CXXFLAGS = $(DEFAULT_CFLAGS) $(MORE_CFLAGS) -I${BULLET_TARGET_DIR}
+CFLAGS = $(DEFAULT_CFLAGS) $(MORE_CFLAGS)
+CXXFLAGS = $(DEFAULT_CFLAGS) $(MORE_CFLAGS) -I$(BULLET_TARGET_DIR)
 
 BULLET_OBJECTS = \
 	$(BULLET_OBJ_DIR)/bulletmlparser-tinyxml.$(O) \
