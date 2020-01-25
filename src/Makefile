@@ -10,6 +10,7 @@ CXX  = g++
 AR	 = ar
 
 PROG = $(NAME).exe
+SILENT = @
 CONFIG = release
 BULLET_DIR = libbulletml
 BULLET_OBJ_DIR = $(BULLET_DIR)/obj/$(CONFIG)/libbulletml
@@ -57,29 +58,45 @@ all: $(BULLET_TARGET) $(BULLET_TARGET_DIR) $(BULLET_OBJ_DIR) $(PROG) $(NAME)_res
 	@:
 
 $(BULLET_TARGET): $(BULLET_OBJECTS) $(BULLET_TARGET_DIR) $(TINY_XML_OBJECTS)
-	$(LINK_CMD)
+	@echo "[ AR       ] $@"
+	$(SILENT) $(LINK_CMD)
 
 $(BULLET_OBJECTS): $(BULLET_OBJ_DIR)
-	$(CXX) $(BULLET_DEFINES) -MMD -MP $(MORE_CFLAGS) -std=c++11 $(BULLET_INCLUDES) -g -o "$@" -MF "$(@:%.o=%.d)" -c "$(BULLET_SRC)/$(@F:%.o=%.cpp)"
+	@echo "[ CXX      ] $@"
+	$(SILENT) $(CXX) $(BULLET_DEFINES) -MMD -MP $(MORE_CFLAGS) -std=c++11 $(BULLET_INCLUDES) -g -o "$@" -MF "$(@:%.o=%.d)" -c "$(BULLET_SRC)/$(@F:%.o=%.cpp)"
 
 $(TINY_XML_OBJECTS): $(BULLET_OBJ_DIR)
-	$(CXX) $(BULLET_DEFINES) -MMD -MP $(MORE_CFLAGS) -std=c++11 $(BULLET_INCLUDES) -g -o "$@" -MF "$(@:%.o=%.d)" -c "$(BULLET_SRC)/tinyxml/$(@F:%.o=%.cpp)"
+	@echo "[ CXX      ] $@"
+	$(SILENT) $(CXX) $(BULLET_DEFINES) -MMD -MP $(MORE_CFLAGS) -std=c++11 $(BULLET_INCLUDES) -g -o "$@" -MF "$(@:%.o=%.d)" -c "$(BULLET_SRC)/tinyxml/$(@F:%.o=%.cpp)"
 
 $(BULLET_TARGET_DIR):
-	mkdir -p $(BULLET_TARGET_DIR)
+	@echo "[ MKDIR     ] $@"
+	$(SILENT) mkdir -p $(BULLET_TARGET_DIR)
 
 $(BULLET_OBJ_DIR):
-	mkdir -p $(BULLET_OBJ_DIR)
+	@echo "[ MKDIR     ] $@"
+	$(SILENT) mkdir -p $(BULLET_OBJ_DIR)
 
 $(PROG): $(OBJS) $(BULLET_TARGET)
-	$(CXX) -o $(PROG) $(OBJS) $(LDFLAGS)
-	mv $(PROG) ..
+	@echo "[ EXE      ] $@"
+	$(SILENT) $(CXX) -o $(PROG) $(OBJS) $(LDFLAGS)
+	$(SILENT) mv $(PROG) ..
 
 $(NAME)_res.o: $(NAME).rc
-	windres -i $(NAME).rc -o $(NAME)_res.o
+	@echo "[ RES      ] $@"
+	$(SILENT) windres -i $(NAME).rc -o $(NAME)_res.o
+
+%.o: %.cpp
+	@echo "[ CXX      ] $@"
+	$(SILENT) $(CXX) $(CXXFLAGS) $(LDFLAGS) '$@' -c -o '$@' '$<'
+
+%.o: %.c
+	@echo "[ CC       ] $@"
+	$(SILENT) $(CC) $(CFLAGS) $(LDFLAGS) '$@' -c -o '$@' '$<'
 
 clean:
-	@echo Cleaning libbulletml
-	$(RM) -f $(BULLET_TARGET)
-	$(RM) -rf $(BULLET_OBJ_DIR)
-	$(RM) ../$(PROG) *.$(O)
+	@echo Cleaning libBulletML
+	$(SILENT) $(RM) -f $(BULLET_TARGET)
+	$(SILENT) $(RM) -rf $(BULLET_OBJ_DIR)
+	@echo Cleaning rRootage
+	$(SILENT) $(RM) ../$(PROG) *.$(O)
