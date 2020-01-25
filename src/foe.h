@@ -17,9 +17,9 @@ extern "C" {
 #include "foe_mtd.h"
 }
 
-#include "bulletml/bulletmlparser.h"
-#include "bulletml/bulletmlparser-tinyxml.h"
-#include "bulletml/bulletmlrunner.h"
+#include "libbulletml/include/bulletmlparser.h"
+#include "libbulletml/include/bulletmlparser-tinyxml.h"
+#include "libbulletml/include/bulletmlrunner.h"
 #include "foecommand.h"
 #include "barragemanager.h"
 #include "boss.h"
