@@ -9,8 +9,9 @@ typedef unsigned int GLuint;
 typedef unsigned int GLenum;
 typedef unsigned int GLbitfield;
 
-#define GLAPI extern
+#define GLAPI static
 #define GLAPIENTRY
+#define APIENTRY
 #define GL_TEXTURE_1D				0x0DE0
 #define GL_TEXTURE_2D				0x0DE1
 #define GL_TEXTURE_MAG_FILTER		0x2800
@@ -65,3 +66,7 @@ GLAPI void GLAPIENTRY glOrtho( GLdouble left, GLdouble right,
                                GLdouble bottom, GLdouble top,
                                GLdouble near_val, GLdouble far_val );
 GLAPI void GLAPIENTRY glVertex2f( GLfloat x, GLfloat y );
+
+GLAPI void APIENTRY gluLookAt(GLdouble eyex,GLdouble eyey,GLdouble eyez,GLdouble centerx,GLdouble centery,GLdouble centerz,GLdouble upx,GLdouble upy,GLdouble upz);
+GLAPI int APIENTRY gluBuild2DMipmaps(GLenum target,GLint components,GLint width,GLint height,GLenum format,GLenum type,const void *data);
+GLAPI void APIENTRY gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar);
