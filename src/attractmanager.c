@@ -37,6 +37,25 @@ static HiScore hiScore;
 #define PREF_FILE "rr.prf"
 #define DEFAULT_HISCORE 100000
 
+int putInt32(int32_t number, FILE* file) {
+   int result = fwrite(&number, sizeof(number), 1, file);
+   if (result != sizeof(number)) {
+       return EOF;
+   }
+
+   return 0;
+}
+
+int32_t getInt32(FILE* file) {
+    int32_t value = 0;
+    int result = fread(&value, sizeof(value), 1, file);
+    if (result != sizeof(value)) {
+        return EOF;
+    }
+
+    return value;
+}
+
 static void initHiScore() {
   int i, j;
   for ( j=0 ; j<MODE_NUM ; j++ ) {
@@ -66,19 +85,19 @@ void loadPreference() {
     initHiScore();
     return;
   }
-  version = getw(fp);
+  version = getInt32(fp);
   if ( version != VERSION_NUM ) {
     initHiScore();
     return;
   }
   for ( j=0 ; j<MODE_NUM ; j++ ) {
     for ( i=0 ; i<STAGE_NUM ; i++ ) {
-      hiScore.score[j][i] = getw(fp);
-      hiScore.cleard[j][i] = getw(fp);
+      hiScore.score[j][i] = getInt32(fp);
+      hiScore.cleard[j][i] = getInt32(fp);
     }
   }
-  hiScore.stage = getw(fp);
-  hiScore.mode = getw(fp);
+  hiScore.stage = getInt32(fp);
+  hiScore.mode = getInt32(fp);
   fclose(fp);
 }
 
@@ -87,15 +106,15 @@ void savePreference() {
   FILE *fp;
   int i, j;
   if ( NULL == (fp = fopen(PREF_FILE,"wb")) ) return;
-  putw(VERSION_NUM, fp);
+  putInt32(VERSION_NUM, fp);
   for ( j=0 ; j<MODE_NUM ; j++ ) {
     for ( i=0 ; i<STAGE_NUM ; i++ ) {
-      putw(hiScore.score[j][i], fp);
-      putw(hiScore.cleard[j][i], fp);
+      putInt32(hiScore.score[j][i], fp);
+      putInt32(hiScore.cleard[j][i], fp);
     }
   }
-  putw(hiScore.stage, fp);
-  putw(hiScore.mode, fp);
+  putInt32(hiScore.stage, fp);
+  putInt32(hiScore.mode, fp);
   fclose(fp);
 }
 

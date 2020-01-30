@@ -1,3 +1,5 @@
+#include <assert.h>
+#include <stdbool.h>
 
 typedef float GLfloat;
 typedef float GLclampf;
@@ -37,36 +39,36 @@ typedef unsigned int GLbitfield;
 #define GL_QUADS				    0x0007
 #define GL_LINE_STRIP				0x0003
 
-GLAPI void GLAPIENTRY glGenTextures( GLsizei n, GLuint *textures );
-GLAPI void GLAPIENTRY glBindTexture( GLenum target, GLuint texture );
-GLAPI void GLAPIENTRY glEnable( GLenum cap );
-GLAPI void GLAPIENTRY glDisable( GLenum cap );
-GLAPI void GLAPIENTRY glClear( GLbitfield mask );
-GLAPI void GLAPIENTRY glPushMatrix( void );
-GLAPI void GLAPIENTRY glPopMatrix( void );
-GLAPI void GLAPIENTRY glTexParameteri( GLenum target, GLenum pname, GLint param );
-GLAPI void GLAPIENTRY glBegin( GLenum mode );
-GLAPI void GLAPIENTRY glTranslatef( GLfloat x, GLfloat y, GLfloat z );
+GLAPI void GLAPIENTRY glGenTextures( GLsizei n, GLuint *textures ) { assert(false); };
+GLAPI void GLAPIENTRY glBindTexture( GLenum target, GLuint texture ) { assert(false); };
+GLAPI void GLAPIENTRY glEnable( GLenum cap ) { assert(false); };
+GLAPI void GLAPIENTRY glDisable( GLenum cap ) { assert(false); };
+GLAPI void GLAPIENTRY glClear( GLbitfield mask ) { assert(false); };
+GLAPI void GLAPIENTRY glPushMatrix( void ) { assert(false); };
+GLAPI void GLAPIENTRY glPopMatrix( void ) { assert(false); };
+GLAPI void GLAPIENTRY glTexParameteri( GLenum target, GLenum pname, GLint param ) { assert(false); };
+GLAPI void GLAPIENTRY glBegin( GLenum mode ) { assert(false); };
+GLAPI void GLAPIENTRY glTranslatef( GLfloat x, GLfloat y, GLfloat z ) { assert(false); };
 GLAPI void GLAPIENTRY glColor4ub( GLubyte red, GLubyte green,
-                                  GLubyte blue, GLubyte alpha );
-GLAPI void GLAPIENTRY glVertex3f( GLfloat x, GLfloat y, GLfloat z );
-GLAPI void GLAPIENTRY glDeleteTextures( GLsizei n, const GLuint *textures);
-GLAPI void GLAPIENTRY glBlendFunc( GLenum sfactor, GLenum dfactor );
-GLAPI void GLAPIENTRY glLineWidth( GLfloat width );
-GLAPI void GLAPIENTRY glClearColor( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha );
+                                  GLubyte blue, GLubyte alpha ) { assert(false); };
+GLAPI void GLAPIENTRY glVertex3f( GLfloat x, GLfloat y, GLfloat z ) { assert(false); };
+GLAPI void GLAPIENTRY glDeleteTextures( GLsizei n, const GLuint *textures) { assert(false); };
+GLAPI void GLAPIENTRY glBlendFunc( GLenum sfactor, GLenum dfactor ) { assert(false); };
+GLAPI void GLAPIENTRY glLineWidth( GLfloat width ) { assert(false); };
+GLAPI void GLAPIENTRY glClearColor( GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha ) { assert(false); };
 GLAPI void GLAPIENTRY glViewport( GLint x, GLint y,
-                                  GLsizei width, GLsizei height );
-GLAPI void GLAPIENTRY glMatrixMode( GLenum mode );
-GLAPI void GLAPIENTRY glLoadIdentity( void );
-GLAPI void GLAPIENTRY glEnd( void );
+                                  GLsizei width, GLsizei height ) { assert(false); };
+GLAPI void GLAPIENTRY glMatrixMode( GLenum mode ) { assert(false); };
+GLAPI void GLAPIENTRY glLoadIdentity( void ) { assert(false); };
+GLAPI void GLAPIENTRY glEnd( void ) { assert(false); };
 GLAPI void GLAPIENTRY glRotatef( GLfloat angle,
-                                 GLfloat x, GLfloat y, GLfloat z );
-GLAPI void GLAPIENTRY glTexCoord2f( GLfloat s, GLfloat t );
+                                 GLfloat x, GLfloat y, GLfloat z ) { assert(false); };
+GLAPI void GLAPIENTRY glTexCoord2f( GLfloat s, GLfloat t ) { assert(false); };
 GLAPI void GLAPIENTRY glOrtho( GLdouble left, GLdouble right,
                                GLdouble bottom, GLdouble top,
-                               GLdouble near_val, GLdouble far_val );
-GLAPI void GLAPIENTRY glVertex2f( GLfloat x, GLfloat y );
+                               GLdouble near_val, GLdouble far_val ) { assert(false); };
+GLAPI void GLAPIENTRY glVertex2f( GLfloat x, GLfloat y ) { assert(false); };
 
-GLAPI void APIENTRY gluLookAt(GLdouble eyex,GLdouble eyey,GLdouble eyez,GLdouble centerx,GLdouble centery,GLdouble centerz,GLdouble upx,GLdouble upy,GLdouble upz);
-GLAPI int APIENTRY gluBuild2DMipmaps(GLenum target,GLint components,GLint width,GLint height,GLenum format,GLenum type,const void *data);
-GLAPI void APIENTRY gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar);
+GLAPI void APIENTRY gluLookAt(GLdouble eyex,GLdouble eyey,GLdouble eyez,GLdouble centerx,GLdouble centery,GLdouble centerz,GLdouble upx,GLdouble upy,GLdouble upz) { assert(false); };
+GLAPI int APIENTRY gluBuild2DMipmaps(GLenum target,GLint components,GLint width,GLint height,GLenum format,GLenum type,const void *data) { assert(false); };
+GLAPI void APIENTRY gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar) { assert(false); };
