@@ -92,7 +92,7 @@ $(NAME)_res.o: $(NAME).rc
 
 %.o: %.c
 	@echo "[ CC       ] $@"
-	$(SILENT) $(CC) $(CFLAGS) $(LDFLAGS) '$@' -c -o '$@' '$<'
+	$(SILENT) $(CC) $(CFLAGS) $(LDFLAGS) -o '$@' -c '$<'
 
 clean:
 	@echo Cleaning libBulletML
