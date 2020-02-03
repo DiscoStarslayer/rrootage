@@ -1,4 +1,5 @@
 rr.prf
 stdout.txt
 *.o
+*.d
 rr.exe
