@@ -92,30 +92,32 @@ static void loadSounds() {
 }
 
 void initSound() {
-  int audio_rate;
-  Uint16 audio_format;
-  int audio_channels;
-  int audio_buffers;
-
-  if ( SDL_InitSubSystem(SDL_INIT_AUDIO) < 0 ) {
-    fprintf(stderr, "Unable to initialize SDL_AUDIO: %s\n", SDL_GetError());
-    return;
-  }
-
-  audio_rate = 44100;
-  audio_format = AUDIO_S16;
-  audio_channels = 1;
-  audio_buffers = 4096;
-  
-  if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0) {
-    fprintf(stderr, "Couldn't open audio: %s\n", SDL_GetError());
-    return;
-  } else {
-    Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
-  }
-
-  useAudio = 1;
-  loadSounds();
+  useAudio = 0;
+  return;
+//  int audio_rate;
+//  Uint16 audio_format;
+//  int audio_channels;
+//  int audio_buffers;
+//
+//  if ( SDL_InitSubSystem(SDL_INIT_AUDIO) < 0 ) {
+//    fprintf(stderr, "Unable to initialize SDL_AUDIO: %s\n", SDL_GetError());
+//    return;
+//  }
+//
+//  audio_rate = 44100;
+//  audio_format = AUDIO_S16;
+//  audio_channels = 1;
+//  audio_buffers = 4096;
+//
+//  if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0) {
+//    fprintf(stderr, "Couldn't open audio: %s\n", SDL_GetError());
+//    return;
+//  } else {
+//    Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
+//  }
+//
+//  useAudio = 1;
+//  loadSounds();
 }
 
 // Play/Stop the music/chunk.
